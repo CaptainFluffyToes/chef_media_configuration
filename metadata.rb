@@ -4,7 +4,7 @@ maintainer_email 'djkhan85@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures media_configuration'
 long_description 'Installs/Configures media_configuration'
-version '0.1.12'
+version '0.1.13'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
@@ -32,5 +32,6 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 #[10/16/2017] - 0.1.10 - Added in my own image for plex
 #[10/16/2017] - 0.1.11 - Added CIFS installation to this recipe
 #[10/16/2017] - 0.1.12 - Removed plex container since it wasn't working
+#[10/22/2017] - 0.1.13 - Updated mount points on system for temp transcode directory
 
 depends 'docker_configuration'

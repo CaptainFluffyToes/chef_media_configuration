@@ -15,7 +15,7 @@ package 'Install CIFS' do
 	action :install
 end
 
-dirs = ['/mnt/Media', '/mnt/Config']
+dirs = ['/mnt/Media', '/mnt/Config', '/mnt/Temp']
 
 dirs.each do |dir|
 	directory "Create #{dir}" do
@@ -41,6 +41,15 @@ mount 'Mount configuration share for containers' do
 	options 'rw,username=media_user,password=test'
 	mount_point '/mnt/Config'
 	action [:mount]
+end
+
+#Mount the directory for temp transcoding
+mount 'Mount temp transcoding directory' do
+  device '//storage.solsys.com/Temp'
+  fstype 'cifs'
+  options 'rw,username=media_user,password=test'
+  mount_point '/mnt/Temp'
+  action [:mount]
 end
 
 dirs = ['/mnt/Config/sonarr', '/mnt/Config/couchpotato', '/mnt/Config/plexpy', '/mnt/Config/sabnzbd']

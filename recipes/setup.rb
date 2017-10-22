@@ -19,9 +19,9 @@ dirs = ['/mnt/Media', '/mnt/Config']
 
 dirs.each do |dir|
 	directory "Create #{dir}" do
-		path "#{dir}"
-		action :create
-		not_if { ::Dir.exists?("#{dir}") }
+	  path "#{dir}"
+	  action :create
+	  not_if { ::Dir.exists?("#{dir}") }
 	end
 end
 
@@ -74,7 +74,6 @@ docker_container 'Sonarr' do
 	volumes ['/mnt/Config/sonarr:/root/.config/NzbDrone', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
 	port '8989:8989'
 	network_mode 'media'
-	#restart_policy 'always'
 	action :run
 end
 
@@ -85,7 +84,6 @@ docker_container 'Couchpotato' do
 	volumes ['/mnt/Config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download']
 	port '5050:5050'
 	network_mode 'media'
-	#restart_policy 'always'
 	action :run
 end
 
@@ -96,7 +94,6 @@ docker_container 'SabnzbD' do
 	volumes ['/mnt/Config/sabnzbd:/root/.sabnzbd', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV']
 	port '8080:8080'
 	network_mode 'media'
-	#restart_policy 'always'
 	action :run
 end
 
@@ -107,6 +104,5 @@ docker_container 'PlexPy' do
 	volumes ['/mnt/Config/plexpy:/data']
 	port '8181:8181'
 	network_mode 'media'
-	#restart_policy 'always'
 	action :run
 end

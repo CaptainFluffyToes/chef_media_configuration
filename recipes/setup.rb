@@ -15,7 +15,7 @@ package 'Install CIFS' do
 	action :install
 end
 
-dirs = ['/mnt/Media', '/mnt/Config', '/mnt/Temp']
+dirs = ['/mnt/Media', '/mnt/config', '/mnt/Temp']
 
 dirs.each do |dir|
 	directory "Create #{dir}" do
@@ -24,6 +24,7 @@ dirs.each do |dir|
 	  not_if { ::Dir.exists?("#{dir}") }
 	end
 end
+
 
 #Mount the media share for access
 mount 'Mount Media share for access' do
@@ -39,7 +40,7 @@ mount 'Mount configuration share for containers' do
 	device '//storage.solsys.com/config'
 	fstype 'cifs'
 	options 'rw,username=media_user,password=test'
-	mount_point '/mnt/Config'
+	mount_point '/mnt/config'
 	action [:mount]
 end
 
@@ -52,7 +53,7 @@ mount 'Mount temp transcoding directory' do
   action [:mount]
 end
 
-dirs = ['/mnt/Config/sonarr', '/mnt/Config/couchpotato', '/mnt/Config/plexpy', '/mnt/Config/sabnzbd']
+dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/sabnzbd', '/mnt/config/nzbget']
 
 dirs.each do |dir|
 	directory 'Mount directories' do
@@ -80,7 +81,7 @@ end
 docker_container 'Sonarr' do
 	container_name 'sonarr'
 	repo 'captainfluffytoes/media_sonarr'
-	volumes ['/mnt/Config/sonarr:/root/.config/NzbDrone', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
+	volumes ['/mnt/config/sonarr:/root/.config/NzbDrone', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
 	port '8989:8989'
 	network_mode 'media'
 	action :run
@@ -90,7 +91,7 @@ end
 docker_container 'Couchpotato' do
 	container_name 'couchpotato'
 	repo 'captainfluffytoes/media_couchpotato'
-	volumes ['/mnt/Config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download']
+	volumes ['/mnt/config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download']
 	port '5050:5050'
 	network_mode 'media'
 	action :run
@@ -100,7 +101,7 @@ end
 docker_container 'SabnzbD' do
 	container_name 'sabnzbd'
 	repo 'captainfluffytoes/media_sabnzbd'
-	volumes ['/mnt/Config/sabnzbd:/root/.sabnzbd', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV']
+	volumes ['/mnt/config/sabnzbd:/root/.sabnzbd', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV']
 	port '8080:8080'
 	network_mode 'media'
 	action :run
@@ -110,7 +111,7 @@ end
 docker_container 'PlexPy' do
 	container_name 'plexpy'
 	repo 'captainfluffytoes/media_plexpy'
-	volumes ['/mnt/Config/plexpy:/data']
+	volumes ['/mnt/config/plexpy:/data']
 	port '8181:8181'
 	network_mode 'media'
 	action :run

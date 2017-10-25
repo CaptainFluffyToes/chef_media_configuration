@@ -4,12 +4,12 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-#Update Apt for installation of CIFS
+# Update Apt for installation of CIFS
 apt_update 'Updates Apt' do
   action :update
 end
 
-#Install CIFS for mounts
+# Install CIFS for mounts
 package 'Install CIFS' do
   package_name 'cifs-utils'
   action :install
@@ -25,7 +25,7 @@ dirs.each do |dir|
   end
 end
 
-#Mount the media share for access
+# Mount the media share for access
 mount 'Mount Media share for access' do
   device '//storage.solsys.com/Bucket/Media'
   fstype 'cifs'
@@ -34,7 +34,7 @@ mount 'Mount Media share for access' do
   action [:mount]
 end
 
-#Mount the directory on fileshare that houses all of the configurations
+# Mount the directory on fileshare that houses all of the configurations
 mount 'Mount configuration share for containers' do
   device '//storage.solsys.com/config'
   fstype 'cifs'
@@ -43,7 +43,7 @@ mount 'Mount configuration share for containers' do
   action [:mount]
 end
 
-#Mount the directory for temp transcoding
+# Mount the directory for temp transcoding
 mount 'Mount temp transcoding directory' do
   device '//storage.solsys.com/Temp'
   fstype 'cifs'
@@ -71,12 +71,12 @@ images.each do |image|
   end
 end
 
-#Create docker network to bind all containers
+# Create docker network to bind all containers
 docker_network 'media' do
   action :create
 end
 
-#Create Sonarr Container
+# Create Sonarr Container
 docker_container 'Sonarr' do
   container_name 'sonarr'
   repo 'captainfluffytoes/media_sonarr'
@@ -86,7 +86,7 @@ docker_container 'Sonarr' do
   action :run
 end
 
-#Create Couchpotato Container
+# Create Couchpotato Container
 docker_container 'Couchpotato' do
   container_name 'couchpotato'
   repo 'captainfluffytoes/media_couchpotato'
@@ -96,7 +96,7 @@ docker_container 'Couchpotato' do
   action :run
 end
 
-#Create SabnzbD Container
+# Create SabnzbD Container
 docker_container 'SabnzbD' do
   container_name 'sabnzbd'
   repo 'captainfluffytoes/media_sabnzbd'
@@ -106,7 +106,7 @@ docker_container 'SabnzbD' do
   action :run
 end
 
-#Create PlexPy Container
+# Create PlexPy Container
 docker_container 'PlexPy' do
   container_name 'plexpy'
   repo 'captainfluffytoes/media_plexpy'

@@ -13,7 +13,7 @@ end
 docker_container 'Sonarr' do
   container_name 'sonarr'
   repo 'captainfluffytoes/media_sonarr'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sonarr:/root/.config/NzbDrone', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sonarr/logs:/root/.config/NzbDrone/logs', '/mnt/config/sonarr/config.xml:/root/.config/NzbDrone/config.xml', '/mnt/config/sonarr/MediaCover:/root/.config/NzbDrone/MediaCover', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
   port '8989:8989'
   network_mode 'media'
   action :run

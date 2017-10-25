@@ -25,31 +25,16 @@ dirs.each do |dir|
   end
 end
 
-# Mount the media share for access
-mount 'Mount Media share for access' do
-  device '//storage.solsys.com/Bucket/Media'
-  fstype 'cifs'
-  options 'rw,username=media_user,password=test'
-  mount_point '/mnt/Media'
-  action [:mount]
-end
+mounts = ['Media', 'config', 'Temp']
 
-# Mount the directory on fileshare that houses all of the configurations
-mount 'Mount configuration share for containers' do
-  device '//storage.solsys.com/config'
-  fstype 'cifs'
-  options 'rw,username=media_user,password=test'
-  mount_point '/mnt/config'
-  action [:mount]
-end
-
-# Mount the directory for temp transcoding
-mount 'Mount temp transcoding directory' do
-  device '//storage.solsys.com/Temp'
-  fstype 'cifs'
-  options 'rw,username=media_user,password=test'
-  mount_point '/mnt/Temp'
-  action [:mount]
+mounts.each do |mount|
+  mount "Mount share #{mount}" do
+    device "//storage.solsys.com/#{mount}"
+    fstype 'cifs'
+    options 'rw,username=media_user,password=test'
+    mount_point "/mnt/#{mount}"
+    action [:mount]
+  end
 end
 
 dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/sabnzbd', '/mnt/config/nzbget']

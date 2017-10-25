@@ -2,11 +2,11 @@
 # Cookbook:: media_configuration
 # Spec:: default
 #
-# Copyright:: 2017, The Authors, All Rights Reserved.
+# Copyright:: 2017, Darren Khan, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'media_configuration::setup' do
+describe 'media_configuration::mounts' do
   context 'When all attributes are default, on an Ubuntu 16.04' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:

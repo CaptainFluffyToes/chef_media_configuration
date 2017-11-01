@@ -5,7 +5,7 @@
 # Copyright:: 2017, Darren Khan, All Rights Reserved.
 
 # List of images to pull
-images = ['captainfluffytoes/media_sonarr', 'captainfluffytoes/media_plexpy', 'captainfluffytoes/media_couchpotato', 'captainfluffytoes/media_sabnzbd']
+images = ['captainfluffytoes/docker_media_sonarr', 'captainfluffytoes/docker_media_plexpy', 'captainfluffytoes/docker_media_couchpotato', 'captainfluffytoes/docker_media_sabnzbd']
 
 # Checking to see if images exist and pulling is needed
 images.each do |image|

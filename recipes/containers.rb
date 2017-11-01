@@ -12,7 +12,7 @@ end
 # Create Sonarr Container
 docker_container 'Sonarr' do
   container_name 'sonarr'
-  repo 'captainfluffytoes/media_sonarr'
+  repo 'captainfluffytoes/docker_media_sonarr'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sonarr/logs:/root/.config/NzbDrone/logs', '/mnt/config/sonarr/config.xml:/root/.config/NzbDrone/config.xml', '/mnt/config/sonarr/MediaCover:/root/.config/NzbDrone/MediaCover', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
   port '8989:8989'
   network_mode 'media'
@@ -22,7 +22,7 @@ end
 # Create Couchpotato Container
 docker_container 'Couchpotato' do
   container_name 'couchpotato'
-  repo 'captainfluffytoes/media_couchpotato'
+  repo 'captainfluffytoes/docker_media_couchpotato'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download']
   port '5050:5050'
   network_mode 'media'
@@ -32,7 +32,7 @@ end
 # Create SabnzbD Container
 docker_container 'SabnzbD' do
   container_name 'sabnzbd'
-  repo 'captainfluffytoes/media_sabnzbd'
+  repo 'captainfluffytoes/docker_media_sabnzbd'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd/sabnzbd.ini:/root/.sabnzbd/sabnzbd.ini', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV']
   port '8080:8080'
   network_mode 'media'
@@ -42,7 +42,7 @@ end
 # Create PlexPy Container
 docker_container 'PlexPy' do
   container_name 'plexpy'
-  repo 'captainfluffytoes/media_plexpy'
+  repo 'captainfluffytoes/docker_media_plexpy'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/plexpy:/data']
   port '8181:8181'
   network_mode 'media'

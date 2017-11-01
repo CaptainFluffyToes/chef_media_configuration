@@ -14,8 +14,3 @@ images.each do |image|
     action :pull_if_missing
   end
 end
-
-# Create docker network to bind all containers
-docker_network 'media' do
-  action :create
-end

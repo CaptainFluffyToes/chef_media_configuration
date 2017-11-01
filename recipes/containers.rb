@@ -4,8 +4,10 @@
 #
 # Copyright:: 2017, Darren Khan, All Rights Reserved.
 
+network = 'media'
+
 # Create docker network to bind all containers
-docker_network 'media' do
+docker_network "#{network}" do
   action :create
 end
 
@@ -15,7 +17,7 @@ docker_container 'Sonarr' do
   repo 'captainfluffytoes/docker_media_sonarr'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sonarr/logs:/root/.config/NzbDrone/logs', '/mnt/config/sonarr/config.xml:/root/.config/NzbDrone/config.xml', '/mnt/config/sonarr/MediaCover:/root/.config/NzbDrone/MediaCover', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
   port '8989:8989'
-  network_mode 'media'
+  network_mode "#{network}"
   action :run
 end
 
@@ -25,7 +27,7 @@ docker_container 'Couchpotato' do
   repo 'captainfluffytoes/docker_media_couchpotato'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download']
   port '5050:5050'
-  network_mode 'media'
+  network_mode "#{network}"
   action :run
 end
 
@@ -35,7 +37,7 @@ docker_container 'SabnzbD' do
   repo 'captainfluffytoes/docker_media_sabnzbd'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd/sabnzbd.ini:/root/.sabnzbd/sabnzbd.ini', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV']
   port '8080:8080'
-  network_mode 'media'
+  network_mode "#{network}"
   action :run
 end
 
@@ -45,6 +47,6 @@ docker_container 'PlexPy' do
   repo 'captainfluffytoes/docker_media_plexpy'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/plexpy:/data']
   port '8181:8181'
-  network_mode 'media'
+  network_mode "#{network}"
   action :run
 end

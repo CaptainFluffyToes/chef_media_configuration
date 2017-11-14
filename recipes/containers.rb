@@ -50,3 +50,12 @@ docker_container 'PlexPy' do
   network_mode "#{network}"
   action :run
 end
+
+# Create nzbget Container
+docker_container 'NzbGet' do
+  container_name 'nzbget'
+  repo 'captainfluffytoes/docker_media_nzbget'
+  port '6789:6789'
+  network_mode "#{network}"
+  action:run
+end

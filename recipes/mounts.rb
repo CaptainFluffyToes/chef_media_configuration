@@ -4,18 +4,21 @@
 #
 # Copyright:: 2017, Darren Khan, All Rights Reserved.
 
-# Update Apt for installation of CIFS
+# Update Apt
 apt_update 'Updates Apt' do
   action :update
 end
 
-# Install CIFS for mounts
-package 'Install CIFS' do
-  package_name 'cifs-utils'
-  action :install
+apps = ['cifs-utils', 'nfs-common']
+
+apps.each do |app|
+  package "Installing #{app}" do
+    package_name "#{app}"
+    action :install
+  end
 end
 
-dirs = ['/mnt/Media', '/mnt/config', '/mnt/Temp']
+dirs = ['/mnt/Media', '/mnt/config', '/mnt/temp', '/mnt/completed', '/mnt/download']
 
 dirs.each do |dir|
   directory "Create #{dir}" do
@@ -25,9 +28,9 @@ dirs.each do |dir|
   end
 end
 
-mounts = ['Media', 'config', 'Temp']
+cifsmounts = ['Media', 'config', 'completed']
 
-mounts.each do |mount|
+cifsmounts.each do |mount|
   mount "Mount share #{mount}" do
     device "//storage.solsys.com/#{mount}"
     fstype 'cifs'
@@ -37,10 +40,22 @@ mounts.each do |mount|
   end
 end
 
+nfsmounts = ['download', 'temp']
+
+nfsmounts.each do |nfsmount|
+  mount "Mount share #{nfsmount}" do
+    device "storage.solsys.com:/mnt/capsule/#{nfsmount}"
+    fstype 'nfs'
+    options 'hard,intr,bg,sync,rw'
+    mount_point "/mnt/#{nfsmount}"
+    action [:mount]
+  end
+end
+
 dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/sabnzbd', '/mnt/config/nzbget']
 
 dirs.each do |dir|
-  directory 'Mount directories' do
+  directory "Mount directory #{dir}" do
     path "#{dir}"
     action :create
     not_if { ::Dir.exist?("#{dir}") }

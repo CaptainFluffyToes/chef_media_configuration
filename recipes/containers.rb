@@ -35,7 +35,7 @@ end
 docker_container 'SabnzbD' do
   container_name 'sabnzbd'
   repo 'captainfluffytoes/docker_media_sabnzbd'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd/sabnzbd.ini:/root/.sabnzbd/sabnzbd.ini', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd/sabnzbd.ini:/root/.sabnzbd/sabnzbd.ini', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
   port '8080:8080'
   network_mode "#{network}"
   action :run

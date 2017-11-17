@@ -15,7 +15,7 @@ end
 docker_container 'Sonarr' do
   container_name 'sonarr'
   repo 'captainfluffytoes/docker_media_sonarr'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sonarr:/root/.config/NzbDrone', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sonarr:/root/.config/NzbDrone', '/mnt/Media/TV:/TV', '/mnt/Media/temp_download:/temp_download', '/mnt/completed:/completed', '/mnt/download:/download']
   port '8989:8989'
   network_mode "#{network}"
   action :run
@@ -25,7 +25,7 @@ end
 docker_container 'Couchpotato' do
   container_name 'couchpotato'
   repo 'captainfluffytoes/docker_media_couchpotato'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/couchpotato:/root/.couchpotato', '/mnt/Media/Movies:/Movies', '/mnt/Media/temp_download:/temp_download', '/mnt/completed:/completed', '/mnt/download:/download']
   port '5050:5050'
   network_mode "#{network}"
   action :run

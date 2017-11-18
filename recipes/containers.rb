@@ -55,7 +55,7 @@ end
 docker_container 'NzbGet' do
   container_name 'nzbget'
   repo 'captainfluffytoes/docker_media_nzbget'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/nzbget/nzbget.cong:/opt/nzbget/nzbget.conf', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/nzbget/nzbget.conf:/opt/nzbget/nzbget.conf', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
   port '6789:6789'
   network_mode "#{network}"
   action:run

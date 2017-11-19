@@ -52,10 +52,10 @@ nfsmounts.each do |nfsmount|
   end
 end
 
-dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/sabnzbd', '/mnt/config/nzbget']
+dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/sabnzbd', '/mnt/config/nzbget', '/mnt/config/plex']
 
 dirs.each do |dir|
-  directory "Mount directory #{dir}" do
+  directory "Create directory #{dir}" do
     path "#{dir}"
     action :create
     not_if { ::Dir.exist?("#{dir}") }

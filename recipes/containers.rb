@@ -61,11 +61,11 @@ docker_container 'NzbGet' do
   action:run
 end
 
-# Create plex Container
+# Create plex container from official image
 docker_container 'Plex' do
   container_name 'plex'
-  repo 'captainfluffytoes/docker_media_plex'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV']
+  repo 'plexin/pms-docker'
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/Media:/data', '/mnt/config/plex:/config']
   port '32400:32400'
   network_mode "#{network}"
   action:run

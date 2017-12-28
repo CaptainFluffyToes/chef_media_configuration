@@ -4,7 +4,7 @@ maintainer_email 'djkhan85@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures media_configuration'
 long_description 'Installs/Configures media_configuration'
-version '0.2.0'
+version '0.2.1'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
@@ -24,7 +24,7 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # [10/13/2017] - 0.1.2 - Updated git ignore file.
 # [10/13/2017] - 0.1.3 - Changed the mount call by removing the windows only commands.
 # [10/13/2017] - 0.1.4 - Added new mount for configuration files. 
-# [10/15/2017] - 0.1.5 - Updated help information and added cookbook dependency.  Added test image to be pulled from the docker hub. 
+# [10/15/2017] - 0.1.5 - Updated help information and added cookbook dependency.  Added test image to be pulled from the docker hub.
 # [10/15/2017] - 0.1.6 - Added SABnzbD, PlexPy, Sonarr, and Couchpotato to cookbook image pull
 # [10/15/2017] - 0.1.7 - Added container creation for SABnzbD, sonarr, couchpotato, and plexpy
 # [10/16/2017] - 0.1.8 - Added docker installation
@@ -34,5 +34,6 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # [10/16/2017] - 0.1.12 - Removed plex container since it wasn't working
 # [10/22/2017] - 0.1.13 - Updated mount points on system for temp transcode directory
 # [10/25/2017] - 0.2.0 - Changed the recipe configuration and broke out individual items to their own recipe file
+# [12/28/2017] - 0.2.1 - Start using the official docker container
 
 depends 'docker_configuration'

@@ -4,7 +4,7 @@ maintainer_email 'djkhan85@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures media_configuration'
 long_description 'Installs/Configures media_configuration'
-version '0.2.2'
+version '0.2.3'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
@@ -36,5 +36,6 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # [10/25/2017] - 0.2.0 - Changed the recipe configuration and broke out individual items to their own recipe file
 # [12/28/2017] - 0.2.1 - Start using the official plex container
 # [12/28/2017] - 0.2.2 - Added transcode directory to plex container
+# [12/28/2017] - 0.2.3 - Updated name for the plex image
 
 depends 'docker_configuration'

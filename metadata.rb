@@ -4,7 +4,7 @@ maintainer_email 'djkhan85@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures media_configuration'
 long_description 'Installs/Configures media_configuration'
-version '0.2.3'
+version '0.2.4'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are

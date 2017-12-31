@@ -66,7 +66,7 @@ docker_container 'Plex' do
   container_name 'plex'
   repo 'plexinc/pms-docker'
   volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/Media:/data', '/mnt/config/plex:/config', '/mnt/temp:/transcode']
-  env ["PLEX_CLAIM=claim-1Bs8PsHzZvyNRYCQpiFs"]
+  env ["TZ=America/New_York"]
   port '32400:32400'
   network_mode "#{network}"
   action:run

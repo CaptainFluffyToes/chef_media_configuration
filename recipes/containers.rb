@@ -35,7 +35,7 @@ end
 docker_container 'SabnzbD' do
   container_name 'sabnzbd'
   repo 'captainfluffytoes/docker_media_sabnzbd'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd/sabnzbd.ini:/root/.sabnzbd/sabnzbd.ini', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd:/root/.sabnzbd', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
   port '8080:8080'
   network_mode "#{network}"
   action :run
@@ -55,7 +55,7 @@ end
 docker_container 'NzbGet' do
   container_name 'nzbget'
   repo 'captainfluffytoes/docker_media_nzbget'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/nzbget/nzbget.conf:/opt/nzbget.conf', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/nzbget:/opt', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
   port '6789:6789'
   network_mode "#{network}"
   action:run

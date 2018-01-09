@@ -31,16 +31,6 @@ docker_container 'Couchpotato' do
   action :run
 end
 
-# Create SabnzbD Container
-docker_container 'SabnzbD' do
-  container_name 'sabnzbd'
-  repo 'captainfluffytoes/docker_media_sabnzbd'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/sabnzbd:/root/.sabnzbd', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
-  port '8080:8080'
-  network_mode "#{network}"
-  action :run
-end
-
 # Create PlexPy Container
 docker_container 'PlexPy' do
   container_name 'plexpy'
@@ -55,7 +45,7 @@ end
 docker_container 'NzbGet' do
   container_name 'nzbget'
   repo 'captainfluffytoes/docker_media_nzbget'
-  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/config/nzbget:/opt', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download']
   port '6789:6789'
   network_mode "#{network}"
   action:run

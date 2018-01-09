@@ -52,7 +52,7 @@ nfsmounts.each do |nfsmount|
   end
 end
 
-dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/sabnzbd', '/mnt/config/nzbget', '/mnt/config/plex']
+dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/nzbget', '/mnt/config/plex']
 
 dirs.each do |dir|
   directory "Create directory #{dir}" do

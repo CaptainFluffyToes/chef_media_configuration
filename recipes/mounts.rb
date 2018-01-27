@@ -52,7 +52,7 @@ nfsmounts.each do |nfsmount|
   end
 end
 
-dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/nzbget', '/mnt/config/plex']
+dirs = ['/mnt/config/sonarr', '/mnt/config/couchpotato', '/mnt/config/plexpy', '/mnt/config/nzbget', '/mnt/config/plex', 'mnt/config/sabnzbd']
 
 dirs.each do |dir|
   directory "Create directory #{dir}" do
@@ -60,4 +60,29 @@ dirs.each do |dir|
     action :create
     not_if { ::Dir.exist?("#{dir}") }
   end
+end
+
+directory "Create local diectory for SabnzbD" do
+  path '/sabnzbd'
+  action :create
+  not_if { ::Dir.exist?("/sabnzbd")}
+end
+
+ruby_block 'sabnzbdSettings' do
+  block do
+    if ::File.exist("/sabnzbd/sabnzbd.ini")
+      bash 'copySettings' do
+        code <<-EOH
+          cp -Rf /sabnzbd /mnt/config/sabnzbd
+          EOH
+      end
+    else
+      bash 'copySettings' do
+        code <<-EOH
+          cp -Rf /mnt/config/sabnzbd /sabnzbd
+          EOH
+      end
+    end
+  end
+  action :run
 end

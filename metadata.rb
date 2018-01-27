@@ -4,7 +4,7 @@ maintainer_email 'djkhan85@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures media_configuration'
 long_description 'Installs/Configures media_configuration'
-version '0.2.6'
+version '0.2.7'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
@@ -40,5 +40,6 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 # [12/28/2017] - 0.2.4 - Added plex claim code
 # [01/08/2018] - 0.2.5 - Updated paths for nzbget and sabnzb
 # [01/08/2018] - 0.2.6 - Removed Sabnzbd and updated nzbget
+# [01/27/2018] - 0.2.7 - Added in sabnzbd and configured directory copy to file server.
 
 depends 'docker_configuration'

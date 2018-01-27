@@ -61,3 +61,13 @@ docker_container 'Plex' do
   network_mode "#{network}"
   action:run
 end
+
+#Create sabnzbd container
+docker_container 'SabNZBd' do
+  container_name 'sabnzbd'
+  repo 'captainfluffytoes/docker_media_sabnzbd'
+  volumes ['/etc/localtime:/etc/localtime:ro', '/mnt/Media/Movies:/Movies', '/mnt/Media/TV:/TV', '/mnt/completed:/completed', '/mnt/download:/download', '/sabnzbd:/root/.sabnzbd']
+  port '8080:8080'
+  network_mode "#{network}"
+  action:run
+end

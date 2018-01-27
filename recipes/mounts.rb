@@ -70,18 +70,10 @@ end
 
 ruby_block 'sabnzbdSettings' do
   block do
-    if ::File.exist("/sabnzbd/sabnzbd.ini")
-      bash 'copySettings' do
-        code <<-EOH
-          cp -Rf /sabnzbd /mnt/config/sabnzbd
-          EOH
-      end
-    else
-      bash 'copySettings' do
-        code <<-EOH
-          cp -Rf /mnt/config/sabnzbd /sabnzbd
-          EOH
-      end
+    if ::File.exist?("/sabnzbd/sabnzbd.ini")
+      `cp -Rf /sabnzbd /mnt/config/sabnzbd`
+    elsif ::File.exist?("/mnt/config/sabnzbd/sabnzbd.ini")
+      `cp -Rf /mnt/config/sabnzbd /sabnzbd`
     end
   end
   action :run
